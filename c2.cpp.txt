@@ -1,0 +1,42 @@
+class Solution {
+public:
+    
+    void solve(string &digits,vector<string>&v,map<int,string>&m,int index,string s){
+        
+        if(index==digits.size()){
+            v.push_back(s);
+            return;
+        }
+        for(auto i:m[digits[index]-'0']){
+            s+=i;
+            solve(digits,v,m,index+1,s);
+            
+            s.pop_back();
+        }
+        
+        
+    }
+    
+    vector<string> letterCombinations(string digits) {
+        
+        vector<string>v;
+        string s="";
+        if(digits.size()==0){
+            return v;
+        }
+        map<int,string>m;
+        m.insert({2,"abc"});
+        m.insert({3,"def"});
+        m.insert({4,"ghi"});
+        m.insert({5,"jkl"});
+        m.insert({6,"mno"});
+        m.insert({7,"pqrs"});
+        m.insert({8,"tuv"});
+        m.insert({9,"wxyz"});
+        
+        solve(digits,v,m,0,s);
+        sort(v.begin(),v.end());
+        return v;
+        
+    }
+};
