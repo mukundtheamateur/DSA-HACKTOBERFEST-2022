@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int reverse(int a) {
+        
+    stringstream ss;
+	ss<<a;
+	string s=ss.str();
+// 	cout<<s<<endl;
+    // cout<<s.size()<<endl;
+    for(int i=0;i<s.size()/2;i++){
+        int temp=s[i];
+        s[i]=s[s.size()-i-1];
+        s[s.size()-i-1]=temp;
+        // swap(s[i],s[s.size()-i-1]);
+    }
+// 	cou<<s
+	if(s[s.size()-1]=='-'){
+	   // cout<<"Inside"<<endl;
+	    s.erase(s.size()-1);
+	    s="-"+s;
+	}
+	
+	stringstream sto(s);
+    long long int x;
+    sto>>x;
+    if(x>INT_MAX || x<INT_MIN){
+        return 0;
+    }
+	return x;
+        
+    }
+};
